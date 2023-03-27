@@ -57,7 +57,7 @@ methods: {
 }
 /* I am not using tailwind because in the task usage of css is required, otherwise it would be much easier to add some tailwind classes */
 .body {
-  height: 100vh;
+  min-height: 100vh;
 }
 .night{
   background: #000;

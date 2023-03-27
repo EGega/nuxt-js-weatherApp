@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+    <WeatherCard />
   </div>
 </template>
 
