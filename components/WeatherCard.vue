@@ -57,7 +57,22 @@ console.log(nextDays);
 const {name: cityName, sys: {country}, weather: [{icon}], main: {temp}} = today
 console.log(cityName);
 
+
 const imageUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`
+
+const { list } = nextDays;
+console.log(list);
+
+// list.slice(0,30).forEach(({ dt }) => {
+//   const date = new Date(dt * 1000)
+//   console.log(date);
+// });
+
+for (let i = 0; i < list.length; i += 8) {
+  const { dt } = list[i];
+  const date = new Date(dt * 1000)
+  console.log(date);
+}
 
 </script>
 
