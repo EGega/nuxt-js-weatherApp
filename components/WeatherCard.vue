@@ -11,13 +11,17 @@
 			<img :src="imageUrl" alt="">
 		</div>
 		<div class="flex justify-between mt-12">
+			<!-- Here I am iterating so can display the data for the next days -->
 			<div v-for="(item, index) in list">
+				<!-- I need to do the for loop in an outer empty div and then the if logic inside another wrapper div, If I use for and if inside the same div they won't work due to the instance problem. The reason why I have chosen the eighth of each iteration is simple, The request gives me data for five days but there is too much data, basically data for each three hours so 24 / 3 = 8 -->
         <div v-if="index % 8 === 0" class="flex flex-col items-center">
-				<span class="font-semibold text-lg">{{item.main.temp}}</span>
-				<span class="font-semibold text-lg">{{index}}</span>
-				<svg class="h-10 w-10 fill-current text-gray-400 mt-3" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79zM1 10.5h3v2H1zM11 .55h2V3.5h-2zm8.04 2.495l1.408 1.407-1.79 1.79-1.407-1.408zm-1.8 15.115l1.79 1.8 1.41-1.41-1.8-1.79zM20 10.5h3v2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm-1 4h2v2.95h-2zm-7.45-.96l1.41 1.41 1.79-1.8-1.41-1.41z"/></svg>
-				<span class="font-semibold mt-1 text-sm">11:00</span>
-				<span class="text-xs font-semibold text-gray-400">AM</span>
+				<span class="font-semibold text-lg">{{item.main.temp.toFixed(1)}}°C</span>
+        <img :src="`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`"
+           :alt="item.weather[0].description"
+           class="w-16 h-16"
+      >
+				 <span class="font-semibold mt-1 text-sm">{{item.dt_txt.slice(5, 10).split("-").join(" / ")}}</span> 
+				<span class="text-xs font-semibold text-gray-400">{{item.weather[0].description}}</span>
 			</div>
 			</div>
 		</div>
@@ -34,29 +38,13 @@ const { data: { _rawValue: nextDays} } = await useFetch ('https://api.openweathe
 console.log(today);
 console.log(nextDays);
 const {name: cityName, sys: {country}, weather: [{icon}], main: {temp}} = today
-console.log(cityName);
-
-
 const imageUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`
-
+// destructuring the arrays of the upcoming days
 const { list } = nextDays;
-console.log(Array.isArray(list));
-
-// list.slice(0,30).forEach(({ dt }) => {
-//   const date = new Date(dt * 1000)
-//   console.log(date);
-// });
-
-for (let i = 0; i < list.length; i += 8) {
-  const { dt } = list[i];
-  const date = new Date(dt * 1000)
-  console.log(date.getDate());
-  console.log(date.getMonth());
-	const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-	const monthString = months[date.getMonth()];
-	console.log(monthString);
-}
-
+list.slice(0, 1).forEach(item => {
+  const date = item.dt_txt.slice(5, 10).split("-").join(" ")
+  console.log(date);
+}); 
 </script>
 
 <style scoped>
