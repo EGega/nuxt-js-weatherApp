@@ -36,6 +36,7 @@
 import {useStore} from "~/store/store"
 const store = useStore()
 
+console.log(store.value);
 const { data: {_rawValue: today} } = await useFetch(`https://api.openweathermap.org/data/2.5/weather?q=${store.value}&appid=a77c0b06ac25cd5a0f5cab55eea00cb7&units=metric`)
 const { data: { _rawValue: nextDays} } = await useFetch (`https://api.openweathermap.org/data/2.5/forecast?q=${store.value}&appid=a77c0b06ac25cd5a0f5cab55eea00cb7&units=metric`)
 const {name: cityName, sys: {country}, weather: [{icon}], main: {temp}} = today
