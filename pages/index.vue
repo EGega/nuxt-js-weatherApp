@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SearchBar />
     <WeatherCard />
   </div>
 </template>

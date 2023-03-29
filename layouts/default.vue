@@ -3,7 +3,7 @@
    <header class="shadow-sm">
     <nav class="container mx-auto p-4 flex justify-between items-center">
       <NuxtLink class="font-bold" to="/">Weather App</NuxtLink>
-      <SearchBar />
+     
       <ul class="flex gap-4">
          <li><NuxtLink to="/">Home</NuxtLink> </li>
          <li><NuxtLink to="/about">About</NuxtLink> </li> 

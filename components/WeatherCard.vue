@@ -33,18 +33,12 @@
 
 <script setup>
 
-const { data: {_rawValue: today} } = await useFetch('https://api.openweathermap.org/data/2.5/weather?q=tirana&appid=a77c0b06ac25cd5a0f5cab55eea00cb7&units=metric')
-const { data: { _rawValue: nextDays} } = await useFetch ('https://api.openweathermap.org/data/2.5/forecast?q=tirana&appid=a77c0b06ac25cd5a0f5cab55eea00cb7&units=metric')
-console.log(today);
-console.log(nextDays);
+const { data: {_rawValue: today} } = await useFetch('https://api.openweathermap.org/data/2.5/weather?q=korce&appid=a77c0b06ac25cd5a0f5cab55eea00cb7&units=metric')
+const { data: { _rawValue: nextDays} } = await useFetch ('https://api.openweathermap.org/data/2.5/forecast?q=korce&appid=a77c0b06ac25cd5a0f5cab55eea00cb7&units=metric')
 const {name: cityName, sys: {country}, weather: [{icon}], main: {temp}} = today
 const imageUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`
 // destructuring the arrays of the upcoming days
 const { list } = nextDays;
-list.slice(0, 1).forEach(item => {
-  const date = item.dt_txt.slice(5, 10).split("-").join(" ")
-  console.log(date);
-}); 
 </script>
 
 <style scoped>
