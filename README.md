@@ -9,6 +9,7 @@
 ### Night and day mode has been added
 ### materialize icons have been used
 ### Pinia has been used for global state management
+### I added a watch flag to the store changes and forced a rerender since It couldn't be achieved automatically
 
 ## Problems
 #### More handling and animations could have been added
