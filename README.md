@@ -5,7 +5,10 @@
 ### Only the original icons are being used and as units I used metric units 
 ### I have used components (to display in the page), pages(about page does nothing I just put it there to show how the routing works ) and layouts(to be able to display the navbar)
 ### modern ES& features like destructuring have been heavily used
-### I have used tailwing ocassionally but also plain css to show my css skills
-### A night and day mode has been added
+### Tailwind ocassionally has been used but also plain css to show my css skills
+### Night and day mode has been added
 ### materialize icons have been used
 ### Pinia has been used for global state management
+
+## Problems
+#### More handling and animations could have been added
