@@ -23,6 +23,7 @@ const updateValue = (e) => {
   e.preventDefault()
   store.setValue(searchValue)
   console.log(searchValue);
+  searchValue = ''
 }
 
 </script>

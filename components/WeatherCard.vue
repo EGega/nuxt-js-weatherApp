@@ -1,8 +1,6 @@
 <template>
- <div class="flex flex-col items-center justify-center  min-h-screen text-gray-700 p-10 bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-200 ">
-
-
-	<div class="w-full max-w-screen-sm bg-white p-10 rounded-xl ring-8 ring-white ring-opacity-40">
+ <div class="flex flex-col items-center justify-center  min-h-screen text-gray-700 p-10 bg-gradient-to-br from-red-200 via-purple-200 to-blue-200">
+	<div v-if="today.name" class="w-full max-w-screen-sm bg-white p-10 rounded-xl ring-8 ring-white ring-opacity-40 wrapper-div">
 		<div class="flex justify-between">
 			<div class="flex flex-col">
 				<span class="text-5xl font-bold">{{temp.toFixed(1)}}°C</span>
@@ -20,29 +18,19 @@
            :alt="item.weather[0].description"
            class="w-16 h-16"
       >
-				 <span class="font-semibold mt-1 text-sm">{{item.dt_txt.slice(5, 10).split("-").join(" / ")}}</span> 
+				 <span class="font-semibold mt-1 text-sm">{{item.dt_txt.slice(5, 10).split("-").join(" / ")}}</span>
 				<span class="text-xs font-semibold text-gray-400">{{item.weather[0].description}}</span>
 			</div>
 			</div>
 		</div>
 	</div>
-
-
 </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-const componentKey = ref(0);
-
-const forceRerender = () => {
-  componentKey.value += 1;
-	console.log(componentKey.value);
-};
 
 import {useStore} from "~/store/store"
 const store = useStore()
-
 const { data: {_rawValue: today} } = await useFetch(`https://api.openweathermap.org/data/2.5/weather?q=${store.value}&appid=a77c0b06ac25cd5a0f5cab55eea00cb7&units=metric`)
 const { data: { _rawValue: nextDays} } = await useFetch (`https://api.openweathermap.org/data/2.5/forecast?q=${store.value}&appid=a77c0b06ac25cd5a0f5cab55eea00cb7&units=metric`)
 const {name: cityName, sys: {country}, weather: [{icon}], main: {temp}} = today
@@ -51,9 +39,15 @@ const imageUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`
 const { list } = nextDays;
 
 
+// I need a more external solution so I am leaving it for now
+// if(!nextDays._rawValue) {
+// 	throw createError({statusCode: 404, statusMessage: "Please enter a valid"})
+// }
+//  console.log(today.statusMessage);
 
 </script>
 
 <style scoped>
+
 
 </style>
